@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ポートフォリオ</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #2f4f4f, #3e5c5b, #4f6f69);
+      color: #f1f1f1;
+      overflow-x: hidden;
+    }
+
+    header {
+      position: relative;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(62, 91, 92, 0.8), rgba(89, 129, 130, 0.8));
+      color: #ffffff;
+      padding: 180px 20px 80px;
+      clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(249, 249, 249, 0.1) 0%, transparent 70%);
+      animation: moveBg 15s linear infinite;
+    }
+
+    @keyframes moveBg {
+      0% {
+        transform: translate(-50%, -50%) scale(1);
+      }
+      100% {
+        transform: translate(50%, 50%) scale(1.5);
+      }
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin: 0;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      backdrop-filter: blur(8px);
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      margin: 0;
+      padding: 15px 0;
+    }
+
+    nav ul li {
+      margin: 0 25px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #f1f1f1;
+      font-size: 1.1rem;
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: all 0.4s ease;
+      position: relative;
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: #6D5BBA;
+      transition: width 0.3s, left 0.3s;
+    }
+
+    nav ul li a:hover::after {
+      width: 100%;
+      left: 0;
+    }
+
+    section {
+      padding: 100px 10%;
+      text-align: center;
+      animation: fadeIn 1.5s ease;
+    }
+
+    section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #7F6F7B;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    }
+
+    #profile img {
+      width: 200px;
+      height: 250px;
+      border-radius: 50%;
+      border: 5px solid #7F6F7B;
+      margin-bottom: 20px;
+      transition: transform 0.4s;
+    }
+
+    #profile img:hover {
+      transform: scale(1.1);
+      filter: brightness(1.1);
+    }
+
+    #profile .card{
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      padding: 25px;
+      margin: 20px auto;
+      max-width: 700px;
+      transition: transform 0.4s, box-shadow 0.3s ease-in-out;
+      backdrop-filter: blur(8px);
+    }
+
+    #profile .card:hover {
+      transform: translateY(-12px) scale(1.05);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.6);
+    }
+
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align:left;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .introduction {
+      margin-left: 0;
+      padding: 0;
+      max-width: 600px;
+    }
+
+    #skills .card, #projects .card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      padding: 25px;
+      margin: 20px auto;
+      max-width: 700px;
+      transition: transform 0.4s, box-shadow 0.3s ease-in-out;
+      backdrop-filter: blur(8px);
+    }
+
+    #skills .card:hover, #projects .card:hover {
+      transform: translateY(-12px) scale(1.05);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.6);
+    }
+
+    #projects img {
+      width: 100%;
+      max-width: 600px;
+      border-radius: 10px;
+      margin-top: 20px;
+      transition: transform 0.4s, filter 0.4s;
+    }
+
+    #projects img:hover {
+      transform: scale(1.05);
+      filter: brightness(1.3);
+    }
+
+    footer {
+      background-color: #2f4f4f;
+      color: #ffffff;
+      padding: 20px 0;
+      text-align: center;
+      font-size: 0.9rem;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 1.5s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 150px 20px 80px;
+      }
+
+      header h1 {
+        font-size: 2.5rem;
+      }
+
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+      }
+
+      nav ul li {
+        margin: 5px 15px;
+      }
+
+      .container {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      #skills .card, #projects .card {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="#profile">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Project</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <h1>HIROAKI MURAYAMA</h1>
+    <h1>PORTFOLIO</h1>
+  </header>
+
+  <section id="profile">
+    <h2>About</h2>
+    <div class="container">
+      <div>
+        <img src="S__49766409.jpg" alt="プロフィール写真">
+        <p><strong>氏名:</strong> 村山皓朗</p>
+        <p><strong>生年月日:</strong> 2003年4月28日</p>
+        <p><strong>大学・学部:</strong> 明星大学 情報学部</p>
+      </div>
+      <p class="introduction">
+        趣味は <strong>服</strong> と <strong>映画鑑賞</strong> です。ファッションを楽しむことは、一日のモチベーションに大きな影響を与え、努力する原動力となります。<br>
+        また、映画鑑賞は英語学習にも役立っています。気になった単語を調べたり、英語の音に耳を慣らすことで、自然に英語力が向上しました。
+        このプロセスを通じて、語学力のみならず異文化理解も深まりました。
+        映画鑑賞は私にとって、新たな視点を提供し、知識と感性を同時に磨く貴重な時間です。<br><br><br><br><br><br>
+        私は、大学で情報技術について学んでいます。
+        特にプログラミングが持つ可能性の高さに惹かれ、 <strong>Python</strong> をはじめ、 <strong>C</strong> や <strong>Javascript</strong> といったプログラミング言語を使うようになりました。
+        複数の言語を習得することで、問題に柔軟に対応する力を身につけました。また、 <strong>Houdini</strong> を使ってCGを学びました。
+        新しい情報や技術に積極的に触れ、常に自分をアップデートしています。
+        変化を恐れず、成長の機会を活用する姿勢で、入社した際にも迅速に適応し貢献できると考えています。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="card">
+      <h3>Frontend</h3>
+      <p>HTML, CSS, JavaScript</p>
+    </div>
+    <div class="card">
+      <h3>Backend</h3>
+      <p>Python, C</p>
+    </div>
+    <div class="card">
+      <h3>Tools</h3>
+      <p>Processing, Houdini, Kali, VSCode, Ubuntu</p>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Project</h2>
+    <div class="card">
+      <h3>インタラクティブアート</h3>
+      <p>JavaScriptを用いた音で人体が揺れるというインタラクティブな作品です。<br>
+        コンセプトは、非日常体験の提供です。音で自分を操るかのような非日常を提供します。<br>
+        背景差分を取って人体を検出し、人体だけが音で揺れるようにしました。<br>
+        音の大きさで揺れの大きさが変わります。また、背景差分を用いて人体を検出しているので人が動くと残像が残り、元々いた場所も揺れます。<br>
+        それにより、残像を音で操っているかのような非日常を体験することができます。</p>
+        <video width="400px" height="266px" src="Echo Dance.mp4" controls></video>
+        <p><strong>Tool</strong> : Processing</p>
+    </div>
+    <div class="card">
+      <h3>SQLインジェクションの実例を用いたセキュリティ理解の促進</h3>
+      <p>３月に行われる学会のポスターセッションの内容です。<br>
+        本プロジェクトでは、中高生を対象にSQLインジェクションの仕組みと危険性を学ぶ機会を提供します。
+        Kali Linuxを用いた安全な仮想環境で、不正クエリの実行やエラーメッセージの解析を通じて、攻撃手法とシステム処理を理解します。
+        また、セキュリティ設計の重要性を学び、他の攻撃手法への展開も視野に入れた包括的な教育を目指します。</p>
+      <iframe src="c:\Users\hiroa\OneDrive\ドキュメント\ゼミ\SQLインジェクションの実例を用いたセキュリティ理解の促進.pdf" width="100%" height="600px"></iframe>
+      <p><strong>Tool</strong> : Kali Linux</p>
+    </div>
+    <div class="card">
+      <h3>花の開花のアニメーション</h3>
+      <p>Houdiniを用いた開花のアニメーション</p>
+      <video width="400px" height="266px" src="Flower.mp4" controls></video>
+      <p><strong>Tool</strong> : Houdini</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 村山皓朗 - All rights reserved.</p>
+  </footer>
+</body>
+</html>
